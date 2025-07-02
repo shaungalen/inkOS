@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="?attr/primaryShadeDarkColor">
+
+    <!-- Search Bar positioned at the top -->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:imeOptions="actionSearch"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="0dp"
+            android:textCursorDrawable="@null"
+            app:closeIcon="@null"
+            app:iconifiedByDefault="false"
+            app:queryBackground="@null"
+            app:queryHint="___"
+            app:searchIcon="@null"
+            app:theme="@style/AppSearchText" />
+    </LinearLayout>
+
+    <!-- Drawer button and tip, positioned below search container -->
+    <TextView
+        android:id="@+id/drawerButton"
+        style="@style/TextSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchContainer"
+        android:layout_alignParentEnd="true"
+        android:paddingVertical="@dimen/app_padding_vertical"
+        android:textAllCaps="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/appDrawerTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drawerButton"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/app_drawer_tips"
+        android:textColor="?attr/primaryColor"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <!-- RecyclerView positioned below the Drawer TextViews -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/appDrawerTip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingBottom="25dp" />
+
+    <!-- List Empty Hint, center aligned -->
+    <TextView
+        android:id="@+id/listEmptyHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/drawer_list_empty_hint"
+        android:textSize="20sp" />
+
+</RelativeLayout>

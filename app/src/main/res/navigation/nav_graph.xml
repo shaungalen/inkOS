@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.github.gezimos.inkos.ui.HomeFragment"
+        android:label="mainFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_mainFragment_to_appListFragment"
+            app:destination="@id/appListFragment" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appListFragment"
+        android:name="com.github.gezimos.inkos.ui.AppDrawerFragment"
+        android:label="appListFragment"
+        tools:layout="@layout/fragment_app_drawer">
+        <action
+            android:id="@+id/action_appListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpTo="@+id/appListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/appFavoriteFragment"
+        android:name="com.github.gezimos.inkos.ui.FavoriteFragment"
+        android:label="appFavoriteFragment"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
+        android:id="@+id/appDrawerListFragment"
+        android:name="com.github.gezimos.inkos.ui.AppDrawerFragment"
+        android:label="AppDrawerFragment" />
+
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.github.gezimos.inkos.ui.notifications.NotificationsFragment"
+        android:label="NotificationsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.github.gezimos.inkos.ui.SettingsFragment"
+        android:label="SettingsFragment"
+        android:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_appListFragment"
+            app:destination="@id/appListFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_appFavoriteFragment"
+            app:destination="@id/appFavoriteFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsFeaturesFragment"
+            app:destination="@id/settingsFeaturesFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsLookFeelFragment"
+            app:destination="@id/settingsLookFeelFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsGesturesFragment"
+            app:destination="@id/settingsGesturesFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_settingsAdvancedFragment"
+            app:destination="@id/settingsAdvancedFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_fontsFragment"
+            app:destination="@id/fontsFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_notificationSettingsFragment"
+            app:destination="@id/notificationSettingsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFeaturesFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.FeaturesFragment"
+        android:label="FeaturesFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFeaturesFragment_to_appFavoriteFragment"
+            app:destination="@id/appFavoriteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsLookFeelFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.LookFeelFragment"
+        android:label="LookFeelFragment"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/settingsGesturesFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.GesturesFragment"
+        android:label="GesturesFragment"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_gesturesFragment_to_appListFragment"
+            app:destination="@id/appListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsAdvancedFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.AdvancedFragment"
+        android:label="settingsAdvancedFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsAdvancedFragment_to_appListFragment"
+            app:destination="@id/appListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fontsFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.FontsFragment"
+        android:label="FontsFragment" />
+
+    <fragment
+        android:id="@+id/notificationSettingsFragment"
+        android:name="com.github.gezimos.inkos.ui.settings.NotificationSettingsFragment"
+        android:label="NotificationSettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
