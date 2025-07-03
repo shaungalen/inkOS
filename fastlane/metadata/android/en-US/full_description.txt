@@ -14,6 +14,7 @@
 - Long-press options: delete, rename, hide, lock, or view info
 
 <b>Notifications</b>
+
 - Smart notification indicators (asterisk or label previews)
 - Media playing indicators with song names
 - Notification window for reading full messages
