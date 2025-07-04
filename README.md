@@ -13,8 +13,7 @@
 
 Click on any image to enlarge it. To know more, read [documentation](DOCUMENTATION.md).
 
-
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height='60' >](https://apt.izzysoft.de/fdroid/index/apk/app.inkos)
+If you want to see the launcher visually before you try you can [watch my video on YouTube](https://www.youtube.com/watch?v=dAmHJ5aFLWA)
 
 # Tested on Android 10 to 16.
 
@@ -24,6 +23,14 @@ It works well with these minimal/dumbphone devices:
 - LightPhone 3 (tested on emulator)
 - QIN F22
 - Cat S22 flip
+
+
+# Downloading
+
+
+You can download the apk directly on the Release section on the rightside of github, or you can use a manager like IzzyOnDroid. It might come on F-Droid in the future once I figure it out.
+
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height='60' >](https://apt.izzysoft.de/fdroid/index/apk/app.inkos)
 
 # Forked with extra features
 
