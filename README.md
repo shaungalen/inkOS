@@ -13,6 +13,9 @@
 
 Click on any image to enlarge it. To know more, read [documentation](DOCUMENTATION.md).
 
+
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height='60' >](https://apt.izzysoft.de/fdroid/index/apk/app.inkos)
+
 # Tested on Android 10 to 16.
 
 It works well with these minimal/dumbphone devices:
