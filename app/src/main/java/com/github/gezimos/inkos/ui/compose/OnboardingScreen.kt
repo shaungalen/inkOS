@@ -277,7 +277,7 @@ object OnboardingScreen {
                         page == 0 && showBattery -> "Shows the battery % at the bottom."
                         page == 0 && showClock -> "Clock widget appears above apps."
                         page == 0 && showStatusBar -> "This will show the status bar."
-                        page == 1 && lastToggledSwitch == "eink" && einkRefreshEnabled -> "To clear ghosting in Mudita Komapkt"
+                        page == 1 && lastToggledSwitch == "eink" && einkRefreshEnabled -> "To clear ghosting in Mudita Kompakt"
                         page == 1 && lastToggledSwitch == "vibration" && vibrationFeedback -> "Vibration feedback on swipes"
                         page == 1 && lastToggledSwitch == "volume" && volumeKeyNavigation -> "Use vol. keys to change pages/values."
                         page == 1 && einkRefreshEnabled -> "Screen refresh to clear ghosting"
