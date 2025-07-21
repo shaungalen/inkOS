@@ -30,18 +30,12 @@ object NotificationBadgeUtil {
         val isUnwanted = notificationInfo != null && (
                 (notificationInfo.title?.trim()?.let {
                     unwantedMessages.any { msg ->
-                        it.equals(
-                            msg,
-                            ignoreCase = true
-                        )
+                        it.equals(msg, ignoreCase = true)
                     }
                 } == true) ||
                         (notificationInfo.text?.trim()?.let {
                             unwantedMessages.any { msg ->
-                                it.equals(
-                                    msg,
-                                    ignoreCase = true
-                                )
+                                it.equals(msg, ignoreCase = true)
                             }
                         } == true)
                 )
@@ -49,7 +43,7 @@ object NotificationBadgeUtil {
         if (notificationInfo != null && prefs.showNotificationBadge && !isUnwanted) {
             val spanBuilder = SpannableStringBuilder()
 
-            // Add notification dot if notification exists and is not media
+            // Add app name with apps font
             val appFont = prefs.getFontForContext("apps")
                 .getFont(context, prefs.getCustomFontPathForContext("apps"))
             val appNameSpan = SpannableString(displayName)
@@ -67,7 +61,7 @@ object NotificationBadgeUtil {
             val isMedia = notificationInfo.category == android.app.Notification.CATEGORY_TRANSPORT
             val isMediaPlaying = isMedia && (!title.isNullOrBlank() || !text.isNullOrBlank())
 
-            // Only show music note if media is actually playing
+            // Notification badge logic
             if (isMedia && isMediaPlaying && prefs.showMediaIndicator) {
                 // Music note as superscript (exponent)
                 val musicNote = SpannableString("\u266A")
@@ -101,12 +95,11 @@ object NotificationBadgeUtil {
                 // For media, show only the first part (title or artist), not the full name
                 spanBuilder.append("\n")
                 val charLimit = prefs.homeAppCharLimit
-                // Split by common separators and take the first part
                 val firstPart = title?.split(" - ", ":", "|")?.firstOrNull()?.trim() ?: ""
                 val notifText =
-                    if (!firstPart.isNullOrBlank() && firstPart.lowercase() != "transport") firstPart.take(
-                        charLimit
-                    ) else ""
+                    if (!firstPart.isNullOrBlank() && firstPart.lowercase() != "transport")
+                        firstPart.take(charLimit)
+                    else ""
                 val notifSpan = SpannableString(notifText)
                 notifSpan.setSpan(
                     AbsoluteSizeSpan(prefs.labelnotificationsTextSize, true),
@@ -140,13 +133,11 @@ object NotificationBadgeUtil {
                     val parts = title.split(": ", limit = 2)
                     if (packageName == "org.thoughtcrime.securesms") { // Signal
                         if (parts.size == 1) {
-                            // Single-person conversation: treat as sender
                             sender = parts[0]
                             group = ""
                         } else {
                             group = parts.getOrNull(0) ?: ""
                             sender = parts.getOrNull(1) ?: ""
-                            // If group is empty or same as sender, treat as single-person
                             if (group.isBlank() || group == sender) {
                                 sender = group
                                 group = ""
@@ -157,7 +148,6 @@ object NotificationBadgeUtil {
                         group = parts.getOrNull(1) ?: ""
                     }
                 }
-                // If group is same as sender, don't show group
                 if (group == sender) group = ""
 
                 val message = if (showMessage) text ?: "" else ""
