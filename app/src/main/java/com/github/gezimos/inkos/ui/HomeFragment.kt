@@ -539,7 +539,7 @@ class HomeFragment : Fragment(), View.OnClickListener, View.OnLongClickListener 
             else setDefaultLauncher.visibility = View.GONE
 
             clock.gravity = Gravity.CENTER
-            homeAppsLayout.gravity = Gravity.CENTER
+            //homeAppsLayout.gravity = Gravity.CENTER
             clock.layoutParams = (clock.layoutParams as LinearLayout.LayoutParams).apply {
                 gravity = Gravity.CENTER
             }
