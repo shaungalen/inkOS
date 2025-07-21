@@ -49,7 +49,7 @@ object NotificationBadgeUtil {
         if (notificationInfo != null && prefs.showNotificationBadge && !isUnwanted) {
             val spanBuilder = SpannableStringBuilder()
 
-            // Add app name with apps font - use universal font logic
+            // Add notification dot if notification exists and is not media
             val appFont = prefs.getFontForContext("apps")
                 .getFont(context, prefs.getCustomFontPathForContext("apps"))
             val appNameSpan = SpannableString(displayName)
@@ -61,14 +61,13 @@ object NotificationBadgeUtil {
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
             }
-            spanBuilder.append(appNameSpan)
 
             val title = notificationInfo.title
             val text = notificationInfo.text
             val isMedia = notificationInfo.category == android.app.Notification.CATEGORY_TRANSPORT
             val isMediaPlaying = isMedia && (!title.isNullOrBlank() || !text.isNullOrBlank())
 
-            // Only show asterisk or music note if not media, or if media is actually playing
+            // Only show music note if media is actually playing
             if (isMedia && isMediaPlaying && prefs.showMediaIndicator) {
                 // Music note as superscript (exponent)
                 val musicNote = SpannableString("\u266A")
@@ -84,10 +83,17 @@ object NotificationBadgeUtil {
                     musicNote.length,
                     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
+                spanBuilder.append(appNameSpan)
                 spanBuilder.append(musicNote)
             } else if (!isMedia && notificationInfo.count > 0) {
-                // Asterisk as superscript (already styled)
-                spanBuilder.append(" *")
+                // Solid dot (bullet) to the left of the app name
+                val bulletSpan = SpannableString("\u2022 ")
+                // Optionally style bulletSpan here (font/size)
+                spanBuilder.append(bulletSpan)
+                spanBuilder.append(appNameSpan)
+            } else {
+                // No badge, just the app name
+                spanBuilder.append(appNameSpan)
             }
 
             // Notification text logic
@@ -155,6 +161,7 @@ object NotificationBadgeUtil {
                 if (group == sender) group = ""
 
                 val message = if (showMessage) text ?: "" else ""
+
                 val notifText = buildString {
                     if (showName && sender.isNotBlank()) append(sender)
                     if (showGroup && group.isNotBlank()) {
@@ -188,22 +195,19 @@ object NotificationBadgeUtil {
 
             textView.text = spanBuilder
         } else {
-            textView.text = displayName
-            textView.typeface = prefs.getFontForContext("apps")
+            // No notification badge, just show the app name
+            val appFont = prefs.getFontForContext("apps")
                 .getFont(context, prefs.getCustomFontPathForContext("apps"))
-        }
-    }
-
-    // CustomTypefaceSpan copied from HomeFragment for reuse
-    private class CustomTypefaceSpan(private val typeface: android.graphics.Typeface) :
-        android.text.style.TypefaceSpan("") {
-        override fun updateDrawState(ds: android.text.TextPaint) {
-            ds.typeface = typeface
-        }
-
-        override fun updateMeasureState(paint: android.text.TextPaint) {
-            paint.typeface = typeface
+            val appNameSpan = SpannableString(displayName)
+            if (appFont != null) {
+                appNameSpan.setSpan(
+                    CustomTypefaceSpan(appFont),
+                    0,
+                    displayName.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+            textView.text = appNameSpan
         }
     }
 }
-
